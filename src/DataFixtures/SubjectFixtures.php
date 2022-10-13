@@ -10,6 +10,8 @@ use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 class SubjectFixtures extends Fixture
 {
+    public const SUBJECT = Subject::class;
+
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
@@ -20,6 +22,8 @@ class SubjectFixtures extends Fixture
         $subject->setTitle('Je suis la question ?');
         $subject->setOwner($this->getReference(UserFixtures::NORMAL_USER));
         $subject->setStatus(false);
+
+        $this->addReference(self::SUBJECT, $subject);
 
         $manager->persist($subject);
 
