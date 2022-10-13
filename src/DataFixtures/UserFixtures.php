@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
         $normalUser = new User();
         $normalUser->setMail('test@mail.com');
         $normalUser->setUsername('Robert');
+        $normalUser->setRoles(['ROLE_ADMIN']);
         $password = $this->hasher->hashPassword($normalUser, 'pass_1234');
         $normalUser->setPassword($password);
 
