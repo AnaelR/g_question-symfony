@@ -18,7 +18,8 @@ class SubjectFixtures extends Fixture
         $subject = new Subject();
         $subject->setContent('Coucou je suis le contenu');
         $subject->setTitle('Je suis la question ?');
-        $subject->setOwner();
+        $subject->setOwner($this->getReference(UserFixtures::NORMAL_USER));
+        $subject->setStatus(false);
 
         $manager->persist($subject);
 
