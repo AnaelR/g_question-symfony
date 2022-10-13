@@ -23,4 +23,7 @@
             </div>
         </article>
     {% endfor %}
+    {% if is_granted('ROLE_USER') %}
+        {{ form(commentForm) }}
+    {% endif %}
 {% endblock %}
