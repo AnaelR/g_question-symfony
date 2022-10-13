@@ -19,7 +19,9 @@
             </a>
         {% endfor %}
     </div>
-    <div class="block">
-        {{ form(subjectForm) }}
-    </div>
+    {% if is_granted('ROLE_USER') %}
+        <div class="block">
+            {{ form(subjectForm) }}
+        </div>
+    {% endif %}
 {% endblock %}
