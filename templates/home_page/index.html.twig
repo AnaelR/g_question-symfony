@@ -3,12 +3,20 @@
 {% block title %}Hello HomePageController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    
-</div>
+    <div class="is-flex">
+        {% for subject in subjects %}
+            <a href="/subject/{{ subject.id }}" class="card is-two-fifths">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">{{ subject.title }}</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        {{ subject.content }}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}

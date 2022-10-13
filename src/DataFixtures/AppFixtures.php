@@ -20,7 +20,8 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
-            SubjectFixtures::class
+            SubjectFixtures::class,
+            CommentFixtures::class
         ];
     }
 }
