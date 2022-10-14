@@ -3,25 +3,58 @@
 {% block title %}Hello HomePageController!{% endblock %}
 
 {% block body %}
-    <div class="is-flex">
+    <section class="hero">
+        <div class="hero-body">
+            <p class="title">
+                Bienvenue sur Question ?
+            </p>
+            <p class="subtitle">
+                Vous pouvez lire les dernières questions dans la liste ci-dessous,
+            </p>
+        </div>
+    </section>
+    <div class="is-flex-wrap-wrap tile is-ancestor">
         {% for subject in subjects %}
-            <a href="/subject/{{ subject.id }}" class="card is-two-fifths">
-                <div class="card-content">
-                    <div class="media">
-                        <div class="media-content">
-                            <p class="title is-4">{{ subject.title }}</p>
+            <div class="tile is-parent is-4">
+                <a href="/subject/{{ subject.id }}" class="card tile is-child">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-3">{{ subject.title }}</p>
+                                <p class="subtitle">{{ subject.owner.username }}</p>
+                                <span class="tag is-light">{{ subject.comments|length }} réponse(s)</span>
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{ subject.content|length > 140? subject.content|slice(0, 140) ~ '...' : subject.content }}
                         </div>
                     </div>
-                    <div class="content">
-                        {{ subject.content }}
-                    </div>
-                </div>
-            </a>
+                </a>
+            </div>
         {% endfor %}
     </div>
     {% if is_granted('ROLE_USER') %}
         <div class="block">
-            {{ form(subjectForm) }}
+            {{ form_start(subjectForm) }}
+            {{ form_errors(subjectForm) }}
+            <div class="field">
+                <label class="label">Votre question</label>
+                <div class="control">
+                    {{ form_widget(subjectForm.title, {'attr': {'class': 'input'}}) }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Détails de la question</label>
+                <div class="control">
+                    {{ form_widget(subjectForm.content, {'attr': {'class': 'textarea'}}) }}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    {{ form_widget(subjectForm.poster, {'attr': {'class': 'button'}}) }}
+                </div>
+            </div>
+            {{ form_end(subjectForm) }}
         </div>
     {% endif %}
 {% endblock %}
