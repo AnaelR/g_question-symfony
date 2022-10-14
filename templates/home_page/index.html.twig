@@ -35,7 +35,26 @@
     </div>
     {% if is_granted('ROLE_USER') %}
         <div class="block">
-            {{ form(subjectForm) }}
+            {{ form_start(subjectForm) }}
+            {{ form_errors(subjectForm) }}
+            <div class="field">
+                <label class="label">Votre question</label>
+                <div class="control">
+                    {{ form_widget(subjectForm.title, {'attr': {'class': 'input'}}) }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Détails de la question</label>
+                <div class="control">
+                    {{ form_widget(subjectForm.content, {'attr': {'class': 'textarea'}}) }}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    {{ form_widget(subjectForm.poster, {'attr': {'class': 'button'}}) }}
+                </div>
+            </div>
+            {{ form_end(subjectForm) }}
         </div>
     {% endif %}
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Hello SubjectPageController!{% endblock %}
 
 {% block body %}
-    <section class="hero is-medium is-primary">
+    <section class="hero is-medium is-primary mb-4">
         <div class="hero-body">
             <p class="title">
                 {{ subject.title }}
@@ -13,17 +13,31 @@
             </p>
         </div>
     </section>
-    {% for comment in comments %}
-        <article class="message is-dark block">
-            <div class="message-header">
-                <p>{{ comment.owner.username }}</p>
-            </div>
-            <div class="message-body">
-                {{ comment.content }}
-            </div>
-        </article>
-    {% endfor %}
+    <div class="pl-6 mt-4">
+        {% for comment in comments %}
+            <article class="message block">
+                <div class="message-body">
+                    <p class="subtitle">{{ comment.owner.username }}</p>
+
+                    {{ comment.content }}
+                </div>
+            </article>
+        {% endfor %}
+    </div>
     {% if is_granted('ROLE_USER') %}
-        {{ form(commentForm) }}
+        {{ form_start(commentForm) }}
+        {{ form_errors(commentForm) }}
+        <div class="field mt-3">
+            <label class="label">Ajouter un commentaire</label>
+            <div class="control">
+                {{ form_widget(commentForm.content, {'attr': {'class': 'textarea'}}) }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form_widget(commentForm.poster, {'attr': {'class': 'button'}}) }}
+            </div>
+        </div>
+        {{ form_end(commentForm) }}
     {% endif %}
 {% endblock %}
