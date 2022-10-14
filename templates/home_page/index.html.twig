@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %}GobelInterogation{% endblock %}
 
 {% block body %}
+    <h1>{{ title }}</h1>
     <div class="is-flex">
         {% for subject in subjects %}
             <a href="/subject/{{ subject.id }}" class="card is-two-fifths">
