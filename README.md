@@ -20,6 +20,9 @@ Pour récupérer les ressources nécéssaires au build du projet tapez
 Puis dans pour installer les ressources NPM :
 > `npm i`
 
+Enfin il faut build le projet avec cette commande :
+> `npm run build`
+
 ## Fixtures
 
 Seeder la base de données avec les fixtures

@@ -26,9 +26,9 @@
     </div>
     {% if is_granted('ROLE_USER') %}
         {{ form_start(commentForm) }}
-        {{ form_errors(commentForm) }}
         <div class="field mt-3">
             <label class="label">Ajouter un commentaire</label>
+            <div class="help is-danger">{{ form_errors(commentForm.content) }}</div>
             <div class="control">
                 {{ form_widget(commentForm.content, {'attr': {'class': 'textarea'}}) }}
             </div>
