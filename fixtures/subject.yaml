@@ -1,6 +1,6 @@
 App\Entity\Subject:
   subject_{1..15}:
-    title: '<username()>'
+    title: '<catchPhrase()> ?'
     content: '<sentence()>'
     status: false
     owner: '@user_<numberBetween(1, 10)>'

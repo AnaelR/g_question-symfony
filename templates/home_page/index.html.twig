@@ -58,4 +58,9 @@
             {{ form_end(subjectForm) }}
         </div>
     {% endif %}
+    {% if not is_granted('ROLE_USER') %}
+        <p class="box">
+            Vous devez vous connecter pour poser une question.
+        </p>
+    {% endif %}
 {% endblock %}

@@ -1,32 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilPageController!{% endblock %}
+{% block title %}Hello ProfilPageController!
+{% endblock %}
 
 {% block body %}
-    <section class="hero is-info">
-        <div class="hero-body">
-            <p class="title">
-                Bonjour {{ user.username }}
-            </p>
-            <p class="subtitle">
-                Vous avez {{ user.subjects|length }} question à votre actif
-            </p>
-        </div>
-    </section>
-    {% for subject in userSubjects %}
-        <a href="/subject/{{ subject.id }}" class="box block">
-            <article class="media">
-                <div class="media-content">
-                    <div class="content">
-                        <p>
-                            <strong>{{ subject.title }}</strong> <small
-                                    class="tag is-info">{{ subject.comments|length }} réponse(s)</small>
-                            <br>
-                            {{ subject.content|length > 50? subject.content|slice(0, 50) ~ '...' : subject.content }}
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </a>
-    {% endfor %}
+	<section class="hero is-info">
+		<div class="hero-body">
+			<p class="title">
+				Bonjour
+				{{ user.username }}
+			</p>
+			<p class="subtitle">
+				Vous avez
+				{{ user.subjects|length }}
+				question à votre actif
+			</p>
+		</div>
+	</section>
+	{% for subject in userSubjects %}
+		<a href="/subject/{{ subject.id }}" class="box block">
+			<article class="media">
+				<div class="media-content">
+					<div class="content">
+						<p>
+							<strong>{{ subject.title }}</strong>
+							<small class="tag is-info">{{ subject.comments|length }}
+								réponse(s)</small>
+							<br>
+							{{ subject.content|length > 50? subject.content|slice(0, 50) ~ '...' : subject.content }}
+							<form method="post" action="{{ path('app_subject_delete', {'id': subject.id}) }}" onsubmit="return confirm('Êtes-vous certains de vouloir supprimer cette question ?');">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ subject.id) }}">
+								<button class="button is-danger">
+									<i class="fa-solid fa-trash"></i>
+								</button>
+							</form>
+							<form method="post" action="{{ path('app_subject_edit', {'id': subject.id}) }}">
+								<button class="button is-success">
+									<i class="fa-solid fa-pen"></i>
+								</button>
+							</form>
+                            
+						</p>
+					</div>
+				</div>
+			</article>
+		</a>
+	{% endfor %}
 {% endblock %}
