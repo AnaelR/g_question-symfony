@@ -29,6 +29,7 @@ class HomePageController extends AbstractController
 
         if ($newSubjectForm->isSubmitted() && $newSubjectForm->isValid()) {
             $subjectRepository->save($newSubject, true);
+            return $this->redirectToRoute('app_home_page');
         }
 
         return $this->render('home_page/index.html.twig', [

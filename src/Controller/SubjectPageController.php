@@ -28,6 +28,9 @@ class SubjectPageController extends AbstractController
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $commentRepository->save($newComment, true);
+
+            return $this->redirectToRoute('app_subject_page', ['id' => $id]);
+
         }
 
         return $this->render('subject_page/index.html.twig', [

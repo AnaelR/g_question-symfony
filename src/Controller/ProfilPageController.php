@@ -9,10 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfilPageController extends AbstractController
 {
-    #[Route('/profil/{id}', name: 'app_profil_page')]
-    public function index(int $id, UserRepository $userRepository): Response
+    #[Route('/profile', name: 'app_profil_page')]
+    public function index(UserRepository $userRepository): Response
     {
-        $user = $userRepository->find($id);
+        $user = $userRepository->find($this->getUser());
 
         $userSubjects = $user->getSubjects();
 

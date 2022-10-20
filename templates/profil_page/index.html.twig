@@ -14,7 +14,7 @@
         </div>
     </section>
     {% for subject in userSubjects %}
-        <div class="box block">
+        <a href="/subject/{{ subject.id }}" class="box block">
             <article class="media">
                 <div class="media-content">
                     <div class="content">
@@ -27,6 +27,6 @@
                     </div>
                 </div>
             </article>
-        </div>
+        </a>
     {% endfor %}
 {% endblock %}
