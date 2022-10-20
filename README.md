@@ -22,7 +22,8 @@ Puis dans pour installer les ressources NPM :
 
 ## Fixtures
 
-> **Marius** je te laisse compléter
+Seeder la base de données avec les fixtures
+> `php bin/console hautelook:fixtures:load`
 
 ## Lancement
 Vous avez désormais les dépendances nécéssaires pour lancer le projet, vous pouvez le mettre en place sur un serveur ou
